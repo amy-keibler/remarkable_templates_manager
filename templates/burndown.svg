@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="1404px" height="1872px" viewBox="0 0 1404 1872">
+
+  <desc>Burndown Chart Template for the Remarkable 2</desc>
+
+  <!-- header -->
+  <rect x="100" y="0" width="1204" height="75" fill="#ebd6ff" />
+  <line x1="100" y1="75" x2="1304" y2="75" stroke="black" stroke-width="4" />
+  <line x1="100" y1="0" x2="100" y2="75" stroke="black" stroke-width="4" />
+  <line x1="904" y1="0" x2="904" y2="75" stroke="black" stroke-width="4" />
+  <line x1="1104" y1="0" x2="1104" y2="75" stroke="black" stroke-width="4" />
+  <line x1="1304" y1="0" x2="1304" y2="75" stroke="black" stroke-width="4" />
+  <text x="125" y="50" font-family="arial" font-size="50" fill="#7021ba">Project</text>
+  <text x="475" y="50" font-family="arial" font-size="30" fill="#823dc2">Week of (</text>
+  <text x="875" y="50" font-family="arial" font-size="30" fill="#823dc2">)</text>
+  <text x="929" y="50" font-family="arial" font-size="50" fill="#7021ba">Points</text>
+  <text x="1129" y="50" font-family="arial" font-size="50" fill="#7021ba">Actual</text>
+
+  <!-- list lines -->
+  <line x1="904" y1="75" x2="904" y2="972" stroke="black" stroke-width="4" />
+  <line x1="1104" y1="75" x2="1104" y2="972" stroke="black" stroke-width="4" />
+  <line x1="0" y1="972" x2="1404" y2="972" stroke="black" stroke-width="4" />
+
+  <!-- chart -->
+  <line x1="100" y1="1072" x2="100" y2="1772" stroke="black" stroke-width="4" />
+  <line x1="100" y1="1772" x2="1304" y2="1772" stroke="black" stroke-width="4" />
+  <line x1="100" y1="1072" x2="1304" y2="1772" stroke="#7021ba" stroke-width="2" />
+
+  <line x1="100" y1="1702" x2="1304" y2="1702" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1632" x2="1304" y2="1632" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1562" x2="1304" y2="1562" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1492" x2="1304" y2="1492" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1422" x2="1304" y2="1422" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1352" x2="1304" y2="1352" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1282" x2="1304" y2="1282" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1212" x2="1304" y2="1212" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1142" x2="1304" y2="1142" stroke="gray" stroke-width="1" />
+  <line x1="100" y1="1072" x2="1304" y2="1072" stroke="gray" stroke-width="1" />
+
+
+  <text x="65" y="1815" font-family="arial" font-size="40" fill="#7021ba">Sun</text>
+  <line x1="300.6667" y1="1072" x2="300.6667" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="265.6667" y="1815" font-family="arial" font-size="40" fill="#7021ba">Mon</text>
+  <line x1="501.33334" y1="1072" x2="501.33334" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="466.33334" y="1815" font-family="arial" font-size="40" fill="#7021ba">Tues</text>
+  <line x1="702" y1="1072" x2="702" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="667" y="1815" font-family="arial" font-size="40" fill="#7021ba">Wed</text>
+  <line x1="902.6667" y1="1072" x2="902.6667" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="867.6667" y="1815" font-family="arial" font-size="40" fill="#7021ba">Thur</text>
+  <line x1="1103.3334" y1="1072" x2="1103.3334" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="1072.3334" y="1815" font-family="arial" font-size="40" fill="#7021ba">Fri</text>
+  <line x1="1304" y1="1072" x2="1304" y2="1772" stroke="gray" stroke-width="1" />
+  <text x="1269" y="1815" font-family="arial" font-size="40" fill="#7021ba">Sat</text>
+
+</svg>
