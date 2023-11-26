@@ -1,0 +1,11 @@
+[package]
+name = "template_translator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.4.8", features = ["derive"] }
+color-eyre = "0.6.2"
+eyre = "0.6.9"
+knuffel = "3.2.0"
+svg = "0.14.0"

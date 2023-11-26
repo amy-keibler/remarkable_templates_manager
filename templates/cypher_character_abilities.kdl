@@ -1,0 +1,20 @@
+template {
+  description "Cypher System Character Sheet"
+
+  theme {
+    colors {
+      primary "#7021ba"
+      secondary "#823dc2"
+      line "#823dc2"
+      border "black"
+      background "#ebd6ff"
+    }
+
+    font {
+      family "arial"
+      sizes {
+        header "32"
+        text "20"
+    }
+  }
+}

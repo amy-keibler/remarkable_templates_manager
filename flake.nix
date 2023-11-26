@@ -4,14 +4,49 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, crane, rust-overlay, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
+          overlays = [ (import rust-overlay) ];
         };
+
+        rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+          extensions = [ "rust-analyzer" "rust-src" ];
+        };
+
+        craneLib = (crane.mkLib pkgs).overrideToolchain rustToolchain;
+
+        src = craneLib.cleanCargoSource (craneLib.path ./template_translator);
+
+        commonArgs = {
+          inherit src;
+
+          pname = "template_translator";
+          version = "0.1.0";
+        };
+
+        cargoArtifacts = craneLib.buildDepsOnly commonArgs;
+
+        template_translator = craneLib.buildPackage (commonArgs // {
+          inherit cargoArtifacts;
+        });
 
         syncTemplates = pkgs.writeShellApplication {
           name = "sync_remarkable_templates";
@@ -43,6 +78,12 @@
             categories = [ "Life/organize" ];
             file = templates/burndown.svg;
           }
+          {
+            name = "Cypher Character Abilities";
+            filename = "cypher_character_abilities";
+            categories = [ ];
+            file = templates/cypher_character_abilities.svg;
+          }
         ];
         customTemplatesJson = pkgs.writeText "templates.json" (builtins.toJSON (map (template: builtins.removeAttrs template [ "file" ]) customTemplates));
         customTemplatesSvgs = map (template: template.file) customTemplates;
@@ -68,6 +109,24 @@
       in
       rec
       {
+        checks = {
+          inherit template_translator;
+
+          clippy = craneLib.cargoClippy (commonArgs // {
+            inherit cargoArtifacts;
+          });
+
+          doc = craneLib.cargoDoc (commonArgs // {
+            inherit cargoArtifacts;
+          });
+
+          fmt = craneLib.cargoFmt (commonArgs // {
+            inherit src;
+          });
+};
+
+        packages.template_translator = template_translator;
+
         packages.customTemplates = pkgs.stdenvNoCC.mkDerivation {
           name = "custom-templates";
           src = ./.;
@@ -90,11 +149,22 @@
         packages.default = packages.customTemplates;
 
         devShells.default = pkgs.mkShell {
+          inputsFrom = builtins.attrValues self.checks.${system};
+
           packages = with pkgs; [
+            # Remarkable Tooling
             syncTemplates
             uploadTemplates
 
-            imagemagick
+            # Rust
+            rustToolchain
+            cargo-edit
+            cargo-expand
+            cargo-insta
+            cargo-msrv
+            cargo-outdated
+
+            # Python
             python3
 
             nixpkgs-fmt
